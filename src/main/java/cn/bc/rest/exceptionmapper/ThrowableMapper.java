@@ -28,9 +28,10 @@ public class ThrowableMapper implements ExceptionMapper<Throwable> {
 		Response.ResponseBuilder b = Response.serverError().type(MediaType.TEXT_PLAIN);
 		String msg = getDeepMessage(e);
 		if (msg != null) {
+			logger.info("ThrowableMapper: msg={}", msg);
 			b.entity(msg);
 		} else {
-			logger.warn(null, e);
+			logger.warn("ThrowableMapper: msg=null", e);
 			b.entity(e.toString());
 		}
 		return b.build();
