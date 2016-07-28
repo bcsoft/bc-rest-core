@@ -3,14 +3,11 @@ package cn.bc.rest;
 import cn.bc.ContextHolder;
 import cn.bc.core.exception.PermissionDeniedException;
 
-import javax.annotation.Priority;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
 /**
@@ -18,8 +15,8 @@ import java.io.IOException;
  *
  * @author dragon 2016-07-27
  */
-@Provider
-@Priority(Priorities.AUTHENTICATION)
+// @Provider
+// @Priority(Priorities.AUTHENTICATION)
 public class AuthRequestFilter implements ContainerRequestFilter {
 	@Context
 	private HttpServletRequest request;
