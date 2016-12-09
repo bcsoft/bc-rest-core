@@ -15,5 +15,9 @@
 			<groupId>cn.bc</groupId>
 			<artifactId>bc-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>cn.bc</groupId>
+			<artifactId>bc-web</artifactId>
+		</dependency>
 	</dependencies>
 </project>
