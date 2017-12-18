@@ -18,6 +18,10 @@ import java.io.IOException;
 // @Provider
 // @Priority(Priorities.AUTHENTICATION)
 public class AuthRequestFilter implements ContainerRequestFilter {
+	/**
+	 * 加密密钥
+	 */
+	public static String secretKey;
 	@Context
 	private HttpServletRequest request;
 
