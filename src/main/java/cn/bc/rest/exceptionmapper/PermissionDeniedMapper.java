@@ -23,7 +23,7 @@ public class PermissionDeniedMapper implements ExceptionMapper<PermissionDeniedE
 			b.entity(e.getMessage());
 		} else {
 			logger.warn(null, e);
-			b.entity(e.toString());
+			b.entity("Permission Denied");
 		}
 		return b.build();
 	}
