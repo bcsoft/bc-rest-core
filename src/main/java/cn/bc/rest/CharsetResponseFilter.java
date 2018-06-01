@@ -13,14 +13,14 @@ import java.io.IOException;
  * @ref http://stackoverflow.com/questions/5514087/jersey-rest-default-character-encoding
  */
 public class CharsetResponseFilter implements ContainerResponseFilter {
-	@Override
-	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
-		MediaType type = responseContext.getMediaType();
-		if (type != null) {
-			if (!type.getParameters().containsKey(MediaType.CHARSET_PARAMETER)) {
-				MediaType typeWithCharset = type.withCharset("utf-8");
-				responseContext.getHeaders().putSingle("Content-Type", typeWithCharset);
-			}
-		}
-	}
+  @Override
+  public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+    MediaType type = responseContext.getMediaType();
+    if (type != null) {
+      if (!type.getParameters().containsKey(MediaType.CHARSET_PARAMETER)) {
+        MediaType typeWithCharset = type.withCharset("utf-8");
+        responseContext.getHeaders().putSingle("Content-Type", typeWithCharset);
+      }
+    }
+  }
 }

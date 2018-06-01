@@ -15,11 +15,11 @@ import java.io.IOException;
 // @Provider
 // @Priority(Priorities.AUTHORIZATION)
 public class LogRequestFilter implements ContainerRequestFilter {
-	private static Logger logger = LoggerFactory.getLogger(LogRequestFilter.class);
+  private static Logger logger = LoggerFactory.getLogger(LogRequestFilter.class);
 
-	@Override
-	public void filter(ContainerRequestContext c) throws IOException {
-		if (logger.isDebugEnabled())
-			logger.debug("{} {} Accept={}", c.getMethod(), c.getUriInfo().getAbsolutePath(), c.getHeaderString("Accept"));
-	}
+  @Override
+  public void filter(ContainerRequestContext c) throws IOException {
+    if (logger.isDebugEnabled())
+      logger.debug("{} {} Accept={}", c.getMethod(), c.getUriInfo().getAbsolutePath(), c.getHeaderString("Accept"));
+  }
 }

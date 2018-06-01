@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class ConstraintViolationMapper implements ExceptionMapper<ConstraintViolationException> {
-	private final static Logger logger = LoggerFactory.getLogger(ConstraintViolationMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(ConstraintViolationMapper.class);
 
-	@Override
-	public Response toResponse(ConstraintViolationException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(ConstraintViolationException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }

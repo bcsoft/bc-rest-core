@@ -15,18 +15,18 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class DataIntegrityViolationMapper implements ExceptionMapper<DataIntegrityViolationException> {
-	private final static Logger logger = LoggerFactory.getLogger(DataIntegrityViolationMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(DataIntegrityViolationMapper.class);
 
-	@Override
-	public Response toResponse(DataIntegrityViolationException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
-		String msg = ThrowableMapper.getDeepMessage(e);
-		if (msg != null) {
-			b.entity(msg);
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(DataIntegrityViolationException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
+    String msg = ThrowableMapper.getDeepMessage(e);
+    if (msg != null) {
+      b.entity(msg);
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }

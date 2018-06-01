@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class InnerLimitedMapper implements ExceptionMapper<InnerLimitedException> {
-	private final static Logger logger = LoggerFactory.getLogger(InnerLimitedMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(InnerLimitedMapper.class);
 
-	@Override
-	public Response toResponse(InnerLimitedException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(InnerLimitedException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }

@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class CoreExceptionMapper implements ExceptionMapper<CoreException> {
-	private final static Logger logger = LoggerFactory.getLogger(CoreExceptionMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(CoreExceptionMapper.class);
 
-	@Override
-	public Response toResponse(CoreException e) {
-		Response.ResponseBuilder b = Response.serverError().type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(CoreException e) {
+    Response.ResponseBuilder b = Response.serverError().type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }

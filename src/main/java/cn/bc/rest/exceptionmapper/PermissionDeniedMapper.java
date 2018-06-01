@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class PermissionDeniedMapper implements ExceptionMapper<PermissionDeniedException> {
-	private final static Logger logger = LoggerFactory.getLogger(PermissionDeniedMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(PermissionDeniedMapper.class);
 
-	@Override
-	public Response toResponse(PermissionDeniedException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity("Permission Denied");
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(PermissionDeniedException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity("Permission Denied");
+    }
+    return b.build();
+  }
 }

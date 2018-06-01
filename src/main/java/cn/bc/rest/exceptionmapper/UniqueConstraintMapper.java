@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class UniqueConstraintMapper implements ExceptionMapper<UniqueConstraintException> {
-	private final static Logger logger = LoggerFactory.getLogger(UniqueConstraintMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(UniqueConstraintMapper.class);
 
-	@Override
-	public Response toResponse(UniqueConstraintException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(UniqueConstraintException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.FORBIDDEN).type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }

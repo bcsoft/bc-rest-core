@@ -17,36 +17,36 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class ThrowableMapper implements ExceptionMapper<Throwable> {
-	private final static Logger logger = LoggerFactory.getLogger(ThrowableMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(ThrowableMapper.class);
 
-	@Override
-	public Response toResponse(Throwable e) {
-		// jav-rs 的异常略过
-		if (e instanceof WebApplicationException) return ((WebApplicationException) e).getResponse();
-		if (e instanceof ProcessingException) throw (ProcessingException) e;
+  @Override
+  public Response toResponse(Throwable e) {
+    // jav-rs 的异常略过
+    if (e instanceof WebApplicationException) return ((WebApplicationException) e).getResponse();
+    if (e instanceof ProcessingException) throw (ProcessingException) e;
 
-		Response.ResponseBuilder b = Response.serverError().type(MediaType.TEXT_PLAIN);
-		String msg = getDeepMessage(e);
-		if (msg != null) {
-			logger.info("ThrowableMapper: msg={}", msg);
-			b.entity(msg);
-		} else {
-			logger.warn("ThrowableMapper: msg=null", e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+    Response.ResponseBuilder b = Response.serverError().type(MediaType.TEXT_PLAIN);
+    String msg = getDeepMessage(e);
+    if (msg != null) {
+      logger.info("ThrowableMapper: msg={}", msg);
+      b.entity(msg);
+    } else {
+      logger.warn("ThrowableMapper: msg=null", e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 
-	/**
-	 * 递归获取最底层的异常信息
-	 *
-	 * @param e 异常
-	 * @return 最底层的异常信息
-	 */
-	public static String getDeepMessage(Throwable e) {
-		if (e == null) return null;
-		if (e.getCause() == null) return e.getMessage();
+  /**
+   * 递归获取最底层的异常信息
+   *
+   * @param e 异常
+   * @return 最底层的异常信息
+   */
+  public static String getDeepMessage(Throwable e) {
+    if (e == null) return null;
+    if (e.getCause() == null) return e.getMessage();
 
-		return getDeepMessage(e.getCause());
-	}
+    return getDeepMessage(e.getCause());
+  }
 }

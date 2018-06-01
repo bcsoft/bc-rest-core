@@ -12,9 +12,9 @@ import javax.ws.rs.core.MediaType;
  */
 @Path("/")
 public class RootResource {
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	public String root() {
-		return "bc rest service";
-	}
+  @GET
+  @Produces(MediaType.TEXT_PLAIN)
+  public String root() {
+    return "bc rest service";
+  }
 }

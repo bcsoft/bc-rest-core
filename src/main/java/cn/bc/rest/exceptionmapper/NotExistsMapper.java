@@ -14,17 +14,17 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class NotExistsMapper implements ExceptionMapper<NotExistsException> {
-	private final static Logger logger = LoggerFactory.getLogger(NotExistsMapper.class);
+  private final static Logger logger = LoggerFactory.getLogger(NotExistsMapper.class);
 
-	@Override
-	public Response toResponse(NotExistsException e) {
-		Response.ResponseBuilder b = Response.status(Response.Status.NOT_FOUND).type(MediaType.TEXT_PLAIN);
-		if (e.getMessage() != null) {
-			b.entity(e.getMessage());
-		} else {
-			logger.warn(null, e);
-			b.entity(e.toString());
-		}
-		return b.build();
-	}
+  @Override
+  public Response toResponse(NotExistsException e) {
+    Response.ResponseBuilder b = Response.status(Response.Status.NOT_FOUND).type(MediaType.TEXT_PLAIN);
+    if (e.getMessage() != null) {
+      b.entity(e.getMessage());
+    } else {
+      logger.warn(null, e);
+      b.entity(e.toString());
+    }
+    return b.build();
+  }
 }
